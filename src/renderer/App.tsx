@@ -115,7 +115,7 @@ const App: React.FC = () => {
       <div className="title-bar">
         <div className="title-bar-content">
           <ImageIcon size={20} />
-          <span>Lone Star Image Editor</span>
+          <span>Massive Image Editor</span>
         </div>
         <div className="title-bar-controls">
           <button onClick={() => setShowAdjustments(!showAdjustments)} className="control-button">
@@ -134,7 +134,7 @@ const App: React.FC = () => {
               className="welcome-content"
             >
               <ImageIcon size={64} className="welcome-icon" />
-              <h1>Welcome to Lone Star Image Editor</h1>
+              <h1>Welcome to Massive Image Editor</h1>
               <p>Select a folder containing images to get started</p>
               <button onClick={openFolder} className="primary-button">
                 <FolderOpen size={20} />

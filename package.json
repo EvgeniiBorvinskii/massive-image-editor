@@ -1,8 +1,16 @@
 {
-  "name": "lone-star-image-editor",
+  "name": "massive-image-editor",
   "version": "1.0.0",
   "description": "Modern Windows 11 style photo editor with batch processing capabilities",
   "main": "dist/main/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EvgeniiBorvinskii/massive-image-editor.git"
+  },
+  "homepage": "https://github.com/EvgeniiBorvinskii/massive-image-editor#readme",
+  "bugs": {
+    "url": "https://github.com/EvgeniiBorvinskii/massive-image-editor/issues"
+  },
   "scripts": {
     "dev": "concurrently \"npm run dev:main\" \"npm run dev:renderer\"",
     "dev:main": "tsc src/main/index.ts --outDir dist/main --target ES2020 --module CommonJS --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports --skipLibCheck && tsc src/main/preload.ts --outDir dist/main --target ES2020 --module CommonJS --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports --skipLibCheck && electron dist/main/index.js",
@@ -22,9 +30,14 @@
     "image-processing",
     "batch-processing",
     "windows11",
-    "dark-theme"
+    "dark-theme",
+    "electron",
+    "react",
+    "typescript",
+    "sharp",
+    "image-editor"
   ],
-  "author": "Your Name",
+  "author": "Evgenii Borvinskii <evgenii.borvinskii@example.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.0.0",
@@ -54,8 +67,8 @@
     "canvas": "^2.11.2"
   },
   "build": {
-    "appId": "com.lonestar.imageeditor",
-    "productName": "Lone Star Image Editor",
+    "appId": "com.massive.imageeditor",
+    "productName": "Massive Image Editor",
     "directories": {
       "output": "release"
     },

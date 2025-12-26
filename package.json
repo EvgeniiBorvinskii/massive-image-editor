@@ -1,0 +1,78 @@
+{
+  "name": "lone-star-image-editor",
+  "version": "1.0.0",
+  "description": "Modern Windows 11 style photo editor with batch processing capabilities",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:main\" \"npm run dev:renderer\"",
+    "dev:main": "tsc src/main/index.ts --outDir dist/main --target ES2020 --module CommonJS --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports --skipLibCheck && tsc src/main/preload.ts --outDir dist/main --target ES2020 --module CommonJS --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports --skipLibCheck && electron dist/main/index.js",
+    "dev:renderer": "vite",
+    "build": "npm run build:main && npm run build:renderer",
+    "build:main": "tsc src/main/index.ts --outDir dist/main --target ES2020 --module CommonJS --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports --skipLibCheck && tsc src/main/preload.ts --outDir dist/main --target ES2020 --module CommonJS --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports --skipLibCheck",
+    "build:renderer": "vite build",
+    "start": "electron dist/main/index.js",
+    "pack": "electron-builder",
+    "dist": "npm run build && electron-builder",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx"
+  },
+  "keywords": [
+    "photo-editor",
+    "image-processing",
+    "batch-processing",
+    "windows11",
+    "dark-theme"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "concurrently": "^8.0.0",
+    "electron": "^25.0.0",
+    "electron-builder": "^24.0.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.0.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.32.0",
+    "electron-store": "^8.1.0",
+    "framer-motion": "^10.12.0",
+    "@radix-ui/react-slider": "^1.1.2",
+    "lucide-react": "^0.263.1",
+    "canvas": "^2.11.2"
+  },
+  "build": {
+    "appId": "com.lonestar.imageeditor",
+    "productName": "Lone Star Image Editor",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.photography"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Photography"
+    }
+  }
+}

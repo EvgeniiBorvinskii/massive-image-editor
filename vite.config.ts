@@ -1,0 +1,30 @@
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+export default defineConfig({
+  plugins: [react()],
+  base: './',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@/components': path.resolve(__dirname, './src/renderer/components'),
+      '@/utils': path.resolve(__dirname, './src/renderer/utils'),
+      '@/types': path.resolve(__dirname, './src/renderer/types')
+    }
+  },
+  root: 'src/renderer',
+  build: {
+    outDir: '../../dist/renderer',
+    emptyOutDir: true,
+    rollupOptions: {
+      input: path.resolve(__dirname, 'src/renderer/index.html')
+    }
+  },
+  server: {
+    port: 3000
+  }
+})

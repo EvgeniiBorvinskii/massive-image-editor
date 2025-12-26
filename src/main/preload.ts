@@ -8,6 +8,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getImages: (folderPath: string) => ipcRenderer.invoke('get-images', folderPath),
   
   // Image processing
+  generateThumbnail: (imagePath: string) => 
+    ipcRenderer.invoke('generate-thumbnail', imagePath),
   processImage: (imagePath: string, adjustments: any) => 
     ipcRenderer.invoke('process-image', imagePath, adjustments),
   
@@ -26,6 +28,7 @@ declare global {
     electronAPI: {
       openFolder: () => Promise<string | null>
       getImages: (folderPath: string) => Promise<string[]>
+      generateThumbnail: (imagePath: string) => Promise<string | null>
       processImage: (imagePath: string, adjustments: any) => Promise<string | null>
       exportImages: (images: any[], adjustments: any, exportPath: string) => Promise<boolean>
       onExportLocationSelected: (callback: (exportPath: string) => void) => void

@@ -121,6 +121,10 @@ class MainApp {
       return await this.getImagesFromFolder(folderPath)
     })
 
+    ipcMain.handle('generate-thumbnail', async (event, imagePath: string) => {
+      return await this.generateThumbnail(imagePath)
+    })
+
     ipcMain.handle('process-image', async (event, imagePath: string, adjustments: any) => {
       return await this.processImage(imagePath, adjustments)
     })
@@ -156,6 +160,24 @@ class MainApp {
     } catch (error) {
       console.error('Error reading folder:', error)
       return []
+    }
+  }
+
+  private async generateThumbnail(imagePath: string): Promise<string | null> {
+    try {
+      // Generate small thumbnail (200x200) for grid display
+      const buffer = await sharp(imagePath)
+        .resize(200, 200, {
+          fit: 'inside',
+          withoutEnlargement: true
+        })
+        .jpeg({ quality: 80 })
+        .toBuffer()
+      
+      return `data:image/jpeg;base64,${buffer.toString('base64')}`
+    } catch (error) {
+      console.error('Error generating thumbnail:', error)
+      return null
     }
   }
 

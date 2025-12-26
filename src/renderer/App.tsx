@@ -45,6 +45,28 @@ const App: React.FC = () => {
     }
   }
 
+  const processSelectedImage = useCallback(async (imagePath: string) => {
+    if (!imagePath) return
+
+    setIsProcessing(true)
+    try {
+      const processedData = await window.electronAPI.processImage(imagePath, adjustments)
+      if (processedData) {
+        setProcessedImages(prev => {
+          const filtered = prev.filter(img => img.original !== imagePath)
+          return [...filtered, {
+            original: imagePath,
+            processed: processedData,
+            adjustments: { ...adjustments }
+          }]
+        })
+      }
+    } catch (error) {
+      console.error('Error processing image:', imagePath, error)
+    }
+    setIsProcessing(false)
+  }, [adjustments])
+
   const processAllImages = useCallback(async () => {
     if (images.length === 0) return
 
@@ -98,16 +120,16 @@ const App: React.FC = () => {
     setAdjustments(defaultAdjustments)
   }
 
-  // Process images when adjustments change
+  // Process only selected image when adjustments change (optimized!)
   useEffect(() => {
-    if (images.length > 0) {
+    if (selectedImage) {
       const debounceTimer = setTimeout(() => {
-        processAllImages()
+        processSelectedImage(selectedImage)
       }, 300) // Debounce for better performance
 
       return () => clearTimeout(debounceTimer)
     }
-  }, [adjustments, processAllImages])
+  }, [adjustments, selectedImage, processSelectedImage])
 
   return (
     <div className="app">
@@ -150,6 +172,10 @@ const App: React.FC = () => {
                 <button onClick={openFolder} className="toolbar-button">
                   <FolderOpen size={16} />
                   Change Folder
+                </button>
+                <button onClick={processAllImages} className="toolbar-button" disabled={images.length === 0 || isProcessing}>
+                  <Sliders size={16} />
+                  Apply to All
                 </button>
                 <button onClick={exportImages} className="toolbar-button" disabled={images.length === 0}>
                   <Download size={16} />

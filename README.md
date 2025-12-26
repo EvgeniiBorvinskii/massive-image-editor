@@ -1,6 +1,6 @@
 # 🌟 Massive Image Editor
 
-<img width="2085" height="1336" alt="image" src="https://github.com/user-attachments/assets/49ca947e-d04d-4f9b-9d96-bafbdfc95839" />
+<img width="2087" height="1346" alt="image" src="https://github.com/user-attachments/assets/f8d4dd39-84c5-4e1b-8b5a-d591c80161df" />
 
 
 A modern Windows 11-style image editor with powerful batch processing capabilities. Built with Electron, React, and TypeScript for high performance and smooth user experience.
@@ -43,6 +43,8 @@ A modern Windows 11-style image editor with powerful batch processing capabiliti
 - **Sharpness** - Enhance detail clarity (-100 to +100)
 
 ## 🚀 Quick Start
+
+<img width="2085" height="1336" alt="image" src="https://github.com/user-attachments/assets/49ca947e-d04d-4f9b-9d96-bafbdfc95839" />
 
 ### Prerequisites
 - Node.js (version 16 or higher)

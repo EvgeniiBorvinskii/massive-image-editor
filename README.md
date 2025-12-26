@@ -1,5 +1,8 @@
 # 🌟 Massive Image Editor
 
+<img width="2085" height="1336" alt="image" src="https://github.com/user-attachments/assets/49ca947e-d04d-4f9b-9d96-bafbdfc95839" />
+
+
 A modern Windows 11-style image editor with powerful batch processing capabilities. Built with Electron, React, and TypeScript for high performance and smooth user experience.
 
 ![Version](https://img.shields.io/badge/version-1.1.0-blue)
